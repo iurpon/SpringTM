@@ -48,7 +48,7 @@ public class UserRepositoryImpl implements UserRepository {
         if (user.isNew()) {
             user.setId(UUID.randomUUID().toString());
         }
-        return users.put(user.getUserName(), user);
+        return users.put(user.getId(), user);
     }
 
     @Override

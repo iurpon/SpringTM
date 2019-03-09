@@ -15,7 +15,7 @@
     </ul>
     <c:set var="actions" value="${action}"/>
     <c:if test = "${actions eq 'update'}">
-        <jsp:useBean id="project" type="ru.trandefil.sc.model.Project" scope="request"/>
+        <jsp:useBean id="project" type="ru.trandefil.spring.model.Project" scope="request"/>
         <form method="post" action="updateProject" class="ui-form">
             <h3>Update  Project data</h3>
             <input type="hidden" name="id" value="${project.id}">

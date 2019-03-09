@@ -15,8 +15,8 @@
 </ul>
 <c:set var="actions" value="${action}"/>
 <c:if test="${actions eq 'update'}">
-    <%--<jsp:useBean id="user" type="ru.trandefil.sc.model.User" scope="request"/>--%>
-    <c:set var="user" value="${updating}"/>
+    <jsp:useBean id="user" type="ru.trandefil.spring.model.User" scope="request"/>
+    <%--<c:set var="user" value="${updating}"/>--%>
     <form method="post" action="updateUser" class="ui-form">
         <h3>Update User data</h3>
         <input type="hidden" name="id" value="${user.id}">
@@ -37,7 +37,7 @@
                 <option value="USER">
             </datalist>
         </div>
-        <p><input type="submit" value="Save"></p>
+        <p><input type="submit" value="Update"></p>
     </form>
 </c:if>
 <c:if test="${actions eq 'create'}">

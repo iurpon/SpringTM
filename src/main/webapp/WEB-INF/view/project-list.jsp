@@ -25,7 +25,7 @@
            <th>Action</th>
            <th>Action</th>
        </thead>
-        <c:forEach items="${items}" var="project" varStatus="status">
+        <c:forEach items="${projects}" var="project" varStatus="status">
             <tfoot>
                  <td>${project.name}</td>
                  <td>${project.description}</td>
