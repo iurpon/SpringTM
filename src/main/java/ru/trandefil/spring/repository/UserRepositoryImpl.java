@@ -1,15 +1,15 @@
 package ru.trandefil.spring.repository;
 
-import ru.trandefil.sc.api.UserRepository;
-import ru.trandefil.sc.model.User;
+import org.springframework.stereotype.Repository;
+import ru.trandefil.spring.api.UserRepository;
+import ru.trandefil.spring.model.User;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.*;
 
-import static ru.trandefil.sc.util.EntityData.ROOT;
-import static ru.trandefil.sc.util.EntityData.USER;
+import static ru.trandefil.spring.util.EntityData.ROOT;
+import static ru.trandefil.spring.util.EntityData.USER;
 
-@ApplicationScoped
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     private static Map<String, User> users = new HashMap<>();

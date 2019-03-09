@@ -8,6 +8,12 @@
     <artifactId>SpringTM</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+<!--
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+    </parent>-->
 
     <properties>
         <java.version>1.8</java.version>
@@ -15,6 +21,7 @@
         <mysql-connector-java.version>5.1.4</mysql-connector-java.version>
         <hibernate.version>5.3.2.Final</hibernate.version>
         <spring.version>5.1.5.RELEASE</spring.version>
+        <servletapi.version>2.5</servletapi.version>
     </properties>
 
     <build>
@@ -27,6 +34,20 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
             </plugin>
         </plugins>
     </build>
@@ -65,6 +86,18 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.0.3.RELEASE</version>
+        </dependency>-->
+
 
     </dependencies>
 </project>

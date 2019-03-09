@@ -1,15 +1,15 @@
 package ru.trandefil.spring.repository;
 
-import ru.trandefil.sc.api.ProjectRepository;
-import ru.trandefil.sc.model.Project;
+import org.springframework.stereotype.Repository;
+import ru.trandefil.spring.api.ProjectRepository;
+import ru.trandefil.spring.model.Project;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.*;
 
-import static ru.trandefil.sc.util.EntityData.PROJECT1;
-import static ru.trandefil.sc.util.EntityData.PROJECT2;
+import static ru.trandefil.spring.util.EntityData.PROJECT1;
+import static ru.trandefil.spring.util.EntityData.PROJECT2;
 
-@ApplicationScoped
+@Repository
 public class ProjectRepositoryImpl implements ProjectRepository {
 
     private Map<String, Project> projectMap = new HashMap<>();
