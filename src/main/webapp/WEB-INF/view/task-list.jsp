@@ -10,8 +10,8 @@
 <p>
 <ul class="menu">
     <li><a class="menu" href="projects">See all Project</a></li>
-    <li><a class="menu" href="index.html">Home</a></li>
-    <li><a class="menu" href="logout">Logout</a></li>
+    <%--<li><a class="menu" href="index.html">Home</a></li>--%>
+    <%--<li><a class="menu" href="logout">Logout</a></li>--%>
     <li><a class="menu" href="users">See all Users</a></li>
 </ul>
 </p>
@@ -31,8 +31,8 @@
         <td>${task.name}</td>
         <td>${task.description}</td>
         <td>${task.project.name}</td>
-        <td><fmt:formatDate value="${task.start}" pattern="yyyy-MM-dd"/></td>
-        <td><fmt:formatDate value="${task.end}" pattern="yyyy-MM-dd"/></td>
+        <td><fmt:formatDate value="${task.start}" pattern="dd-MM-yyyy"/></td>
+        <td><fmt:formatDate value="${task.end}" pattern="dd-MM-yyyy"/></td>
         <td><a href="updateTask?id=${task.id}">Update</a></td>
         <td><a href="deleteTask?id=${task.id}">Delete</a></td>
     </tfoot>

@@ -28,7 +28,8 @@ public class ProjectUpdateController {
     ) {
         logger.info("=========================== project update GET");
         final Project project = projectService.getById(id);
-        model.addAttribute("actions","update");
+        logger.info("============================= get Project " + project);
+        model.addAttribute("action","update");
         model.addAttribute("project",project);
         return "editProject";
     }

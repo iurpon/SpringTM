@@ -11,7 +11,7 @@
   <ul class="menu">
       <li><a class="menu" href="addProject">Add New Project</a></li>
       <li><a class="menu" href="tasks">See all Tasks</a></li>
-      <li><a class="menu" href="index.html">Home</a></li>
+      <li><a class="menu" href="">Home</a></li>
       <li><a class="menu" href="logout">Logout</a></li>
       <li><a class="menu" href="users">See all Users</a></li>
   </ul>

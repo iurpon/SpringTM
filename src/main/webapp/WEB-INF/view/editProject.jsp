@@ -25,7 +25,7 @@
             <div class="form-row">
                 <input type="text" id="description" value="${project.description}" name="description" required autocomplete="off"><label for="description">Description</label>
             </div>
-            <p><input type="submit" value="Save"></p>
+            <p><input type="submit" value="Update"></p>
         </form>
     </c:if>
     <c:if test = "${actions eq 'create'}">
