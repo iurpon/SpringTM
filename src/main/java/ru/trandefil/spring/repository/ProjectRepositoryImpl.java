@@ -6,22 +6,19 @@ import ru.trandefil.spring.model.Project;
 
 import java.util.*;
 
-import static ru.trandefil.spring.util.EntityData.PROJECT1;
-import static ru.trandefil.spring.util.EntityData.PROJECT2;
-
 @Repository
 public class ProjectRepositoryImpl implements ProjectRepository {
 
     private Map<String, Project> projectMap = new HashMap<>();
 
-    {
+/*    {
         init();
     }
 
     private void init() {
         projectMap.put(PROJECT1.getId(), PROJECT1);
         projectMap.put(PROJECT2.getId(), PROJECT2);
-    }
+    }*/
 
     @Override
     public Project save(Project project) {

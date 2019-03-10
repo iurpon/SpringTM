@@ -36,7 +36,7 @@ public class TaskCreateController {
         return "editTask";
     }
 
-    @PostMapping("/addTask")
+/*    @PostMapping("/addTask")
     public void saveTask(
             @RequestParam("id") String projectId,
             @RequestParam("name") String name,
@@ -50,5 +50,5 @@ public class TaskCreateController {
         final Task task = new Task(null,name,description,start,end,project);
         taskService.save(task);
         response.sendRedirect("task-list");
-    }
+    }*/
 }

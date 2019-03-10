@@ -36,6 +36,7 @@ public class TaskUpdateController {
         return "editTask";
     }
 
+/*
     @PostMapping("/updateTask")
     public void saveTask(
             @RequestParam("id") String id,
@@ -52,5 +53,6 @@ public class TaskUpdateController {
         taskService.save(task);
         response.sendRedirect("tasks");
     }
+*/
 
 }

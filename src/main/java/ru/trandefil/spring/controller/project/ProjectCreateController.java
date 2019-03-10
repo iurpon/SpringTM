@@ -35,8 +35,8 @@ public class ProjectCreateController {
             HttpServletResponse response
     ) throws IOException {
         logger.info("============================project create POST");
-        final Project project = new Project(null,name,description);
-        projectService.save(project);
+/*        final Project project = new Project(null,name,description);
+        projectService.save(project);*/
         response.sendRedirect("projects");
     }
 

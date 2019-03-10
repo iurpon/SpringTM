@@ -34,7 +34,7 @@ public class ProjectUpdateController {
         return "editProject";
     }
 
-    @PostMapping("/updateProject")
+/*    @PostMapping("/updateProject")
     public void updateProject(
             @RequestParam("id") String id,
             @RequestParam("name") String name,
@@ -45,6 +45,6 @@ public class ProjectUpdateController {
         final Project project = new Project(id,name,description);
         projectService.save(project);
         response.sendRedirect("projects");
-    }
+    }*/
 
 }

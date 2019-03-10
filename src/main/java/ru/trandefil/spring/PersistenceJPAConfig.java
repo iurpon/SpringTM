@@ -73,6 +73,7 @@ public class PersistenceJPAConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
+        logger.info("===================================PersistenceJPAConfig  transaction manager()");
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;

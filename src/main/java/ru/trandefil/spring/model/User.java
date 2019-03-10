@@ -1,31 +1,38 @@
 package ru.trandefil.spring.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
+@ToString(callSuper = true,exclude = {"projects"})
+@Entity
+@NoArgsConstructor
+@Table(name = "users")
 public class User extends AbstractEntity {
 
-    private String userName;
+    @Column(unique = true)
+    private String name;
 
     private String password;
 
+    @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    public User(String id, String userName, String password, Role role) {
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Project> projects = new ArrayList<>();
+
+    public User(String id, String name, String password, Role role) {
         super(id);
-        this.userName = userName;
+        this.name = name;
         this.password = password;
         this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 
 }

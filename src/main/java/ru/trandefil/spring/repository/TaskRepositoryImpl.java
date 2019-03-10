@@ -6,14 +6,12 @@ import ru.trandefil.spring.model.Task;
 
 import java.util.*;
 
-import static ru.trandefil.spring.util.EntityData.*;
-
 @Repository
 public class TaskRepositoryImpl implements TaskRepository{
 
     private static Map<String, Task> taskMap = new HashMap<>();
 
-    static {
+/*    static {
         init();
     }
 
@@ -22,7 +20,7 @@ public class TaskRepositoryImpl implements TaskRepository{
         taskMap.put(TASK2.getId(),TASK3);
         taskMap.put(TASK3.getId(),TASK3);
         taskMap.put(TASK4.getId(),TASK4);
-    }
+    }*/
 
     @Override
     public Task save(Task task) {
@@ -59,7 +57,7 @@ public class TaskRepositoryImpl implements TaskRepository{
 
     @Override
     public void saveAll(List<Task> tasks) {
-        tasks.forEach(task -> taskMap.put(task.getName(),task));
+        tasks.forEach(task -> taskMap.put(task.getId(),task));
     }
 
 }
