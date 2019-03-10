@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.trandefil.spring.api.ProjectService;
 import ru.trandefil.spring.model.Project;
+import ru.trandefil.spring.util.EntityData;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -35,8 +36,8 @@ public class ProjectCreateController {
             HttpServletResponse response
     ) throws IOException {
         logger.info("============================project create POST");
-/*        final Project project = new Project(null,name,description);
-        projectService.save(project);*/
+        final Project project = new Project(null,name,description, EntityData.ROOT);
+        projectService.save(project);
         response.sendRedirect("projects");
     }
 

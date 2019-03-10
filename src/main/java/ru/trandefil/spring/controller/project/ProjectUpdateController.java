@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.trandefil.spring.api.ProjectService;
+import ru.trandefil.spring.api.UserService;
 import ru.trandefil.spring.model.Project;
+import ru.trandefil.spring.model.User;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,6 +23,9 @@ public class ProjectUpdateController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/updateProject")
     public String goToProjectForm(
             @RequestParam("id") String id,
@@ -29,22 +34,24 @@ public class ProjectUpdateController {
         logger.info("=========================== project update GET");
         final Project project = projectService.getById(id);
         logger.info("============================= get Project " + project);
-        model.addAttribute("action","update");
-        model.addAttribute("project",project);
+        model.addAttribute("action", "update");
+        model.addAttribute("project", project);
         return "editProject";
     }
 
-/*    @PostMapping("/updateProject")
+    @PostMapping("/updateProject")
     public void updateProject(
             @RequestParam("id") String id,
+            @RequestParam("userId") String userId,
             @RequestParam("name") String name,
             @RequestParam("description") String description,
             HttpServletResponse response
     ) throws IOException {
         logger.info("========================= project create POST");
-        final Project project = new Project(id,name,description);
+        final User user = userService.getById(userId);
+        final Project project = new Project(id, name, description, user);
         projectService.save(project);
         response.sendRedirect("projects");
-    }*/
+    }
 
 }

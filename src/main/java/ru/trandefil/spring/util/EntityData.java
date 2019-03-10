@@ -21,7 +21,7 @@ public class EntityData {
 
     public static User USER = new User(UUID.randomUUID().toString(), "User", "user", Role.USER);
 
-    public static User ROOT = new User(UUID.randomUUID().toString(), "root", "root", Role.ADMIN);
+    public static User ROOT = new User("b3247ebd-8f86-4f9b-9d18-08686125f51b", "root", "root", Role.ADMIN);
 
   /*  public static Task TASK1 = new Task(UUID.randomUUID().toString(), "task1_project1", "description11",
             DateUtil.fromString("2011-03-03"), DateUtil.fromString("2012-03-03"), PROJECT1);
