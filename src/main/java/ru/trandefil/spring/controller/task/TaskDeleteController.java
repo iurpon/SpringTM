@@ -24,6 +24,7 @@ public class TaskDeleteController {
 
     @GetMapping("/deleteTask")
     public void deleteTask(@RequestParam("id") String id, HttpServletResponse response) throws IOException {
+        logger.info("==================================== delete task GET");
         taskService.deletById(id);
         response.sendRedirect("tasks");
     }

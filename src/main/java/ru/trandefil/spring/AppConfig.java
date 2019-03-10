@@ -11,14 +11,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import java.util.logging.Logger;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"ru.trandefil.spring"})
 public class AppConfig implements WebMvcConfigurer {
 
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/index");
+        logger.info("========================== registering controller?");
+        registry.addViewController("/").setViewName("hello");
+        registry.addViewController("/wellcome").setViewName("hello");
+        registry.addViewController("/login").setViewName("login");
     }
 
     @Override
