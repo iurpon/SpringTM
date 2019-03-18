@@ -54,18 +54,6 @@
 
     <dependencies>
 
-<!--        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector-java.version}</version>
-        </dependency>
-        &lt;!&ndash; ORM &ndash;&gt;
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.2.18.Final</version>
-        </dependency>-->
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -73,8 +61,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Spring -->
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -92,12 +78,13 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>2.0.3.RELEASE</version>
-        </dependency>-->
 
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.1</version>
+        </dependency>
 
     </dependencies>
+
 </project>
