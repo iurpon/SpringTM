@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.trandefil.spring.api.ProjectService;
 import ru.trandefil.spring.api.TaskService;
+import ru.trandefil.spring.api.UserService;
 import ru.trandefil.spring.model.Project;
 import ru.trandefil.spring.model.Task;
+import ru.trandefil.spring.model.User;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -28,6 +30,9 @@ public class TaskCreateController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private UserService userService;
+
     private Project project;
 
     @GetMapping("/addTask")
@@ -43,7 +48,11 @@ public class TaskCreateController {
     @PostMapping("/addTask")
     public String saveTask(@ModelAttribute("task") Task task) {
         logger.info("=========================task create POST. task created : " + task);
-//        taskService.save(task);
+        task.setProject(project);
+        final User user = userService.getById("b3247ebd-8f86-4f9b-9d18-08686125f51b");
+        task.setAssignee(user);
+        task.setExecutor(user);
+        taskService.save(task);
          return "redirect:/tasks";
     }
 }

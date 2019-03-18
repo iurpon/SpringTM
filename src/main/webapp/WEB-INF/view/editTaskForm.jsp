@@ -10,7 +10,7 @@
     <li><a class="menu" href="tasks">See all Tasks</a></li>
     <li><a class="menu" href="users">See all Users</a></li>
 </ul>
-<form:form method="POST" action="/SpringTM/addProject" modelAttribute="task" class="ui-form">
+<form:form method="POST" action="/SpringTM/addTask" modelAttribute="task" class="ui-form">
     <div class="form-row">
         <form:hidden path="id"/>
     </div>
@@ -23,12 +23,12 @@
         <form:input path="description" />
     </div>
     <div class="form-row">
-        <form:label path="start" type = "date">Start Date</form:label>
-        <form:input path="start"   />
+        <form:label path="start" >Start Date</form:label>
+        <form:input path="start"  type = "date" />
     </div>
     <div class="form-row">
-        <form:label path="end" type = "date">End Date</form:label>
-        <form:input path="end"   />
+        <form:label path="end" >End Date</form:label>
+        <form:input path="end"   type = "date"/>
     </div>
     <td><input type="submit" value="Submit"/></td>
 </form:form>
