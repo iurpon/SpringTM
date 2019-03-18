@@ -29,10 +29,10 @@ public class UserUpdateController {
         logger.info("===========================================updating " + user);
         model.addAttribute("action", "update");
         model.addAttribute("user", user);
-        return "editUser";
+        return "editUserForm";
     }
 
-    @PostMapping("/updateUser")
+/*    @PostMapping("/updateUser")
     public void updateUser(
             @RequestParam("id") String id,
             @RequestParam("name") String name,
@@ -43,6 +43,6 @@ public class UserUpdateController {
         logger.info("======================================UserUpdate  POSt");
         userService.save(new User(id,name,password,Enum.valueOf(Role.class,role)));
         response.sendRedirect("users");
-    }
+    }*/
 
 }
