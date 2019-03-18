@@ -11,10 +11,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString(callSuper = true,exclude = {"projects"})
 @Entity
 @NoArgsConstructor
 @Table(name = "users")
+@ToString(callSuper = true,exclude = {"projects"})
 public class User extends AbstractEntity {
 
     @Column(unique = true)

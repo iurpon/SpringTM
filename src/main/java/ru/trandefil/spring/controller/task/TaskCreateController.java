@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.trandefil.spring.api.ProjectService;
@@ -27,28 +28,22 @@ public class TaskCreateController {
     @Autowired
     private ProjectService projectService;
 
+    private Project project;
+
     @GetMapping("/addTask")
     public String goToTaskForm(@RequestParam("id") String id, Model model) {
         logger.info("================================== task create GET");
-        final Task task = taskService.getById(id);
-        model.addAttribute("action", "create");
+        project = projectService.getById(id);
+        final Task task = new Task();
+        task.setProject(project);
         model.addAttribute("task", task);
-        return "editTask";
+        return "editTaskForm";
     }
 
-/*    @PostMapping("/addTask")
-    public void saveTask(
-            @RequestParam("id") String projectId,
-            @RequestParam("name") String name,
-            @RequestParam("description") String description,
-            @RequestParam("start") Date start,
-            @RequestParam("end") Date end,
-            HttpServletResponse response
-    ) throws IOException {
-        logger.info("=========================task create POST");
-        final Project project = projectService.getById(projectId);
-        final Task task = new Task(null,name,description,start,end,project);
-        taskService.save(task);
-        response.sendRedirect("task-list");
-    }*/
+    @PostMapping("/addTask")
+    public String saveTask(@ModelAttribute("task") Task task) {
+        logger.info("=========================task create POST. task created : " + task);
+//        taskService.save(task);
+         return "redirect:/tasks";
+    }
 }

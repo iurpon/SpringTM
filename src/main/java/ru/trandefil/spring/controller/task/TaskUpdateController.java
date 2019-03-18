@@ -31,28 +31,8 @@ public class TaskUpdateController {
     public String goToTaskForm(@RequestParam("id") String id, Model model){
         logger.info("================================== task update GET");
         final Task task = taskService.getById(id);
-        model.addAttribute("action","update");
         model.addAttribute("taskEntity",task);
-        return "editTask";
+        return "editTaskForm";
     }
-
-/*
-    @PostMapping("/updateTask")
-    public void saveTask(
-            @RequestParam("id") String id,
-            @RequestParam("projectId") String projectId,
-            @RequestParam("name") String name,
-            @RequestParam("description") String descripton,
-            @RequestParam("start") Date start,
-            @RequestParam("start") Date end,
-            HttpServletResponse response
-    ) throws IOException {
-        logger.info("====================================== task update POST");
-        final Project project = projectService.getById(projectId);
-        final Task task = new Task(id,name,descripton,start,end,project);
-        taskService.save(task);
-        response.sendRedirect("tasks");
-    }
-*/
 
 }

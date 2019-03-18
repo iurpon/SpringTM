@@ -4,60 +4,67 @@ import org.springframework.stereotype.Repository;
 import ru.trandefil.spring.api.TaskRepository;
 import ru.trandefil.spring.model.Task;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.*;
 
 @Repository
 public class TaskRepositoryImpl implements TaskRepository{
 
-    private static Map<String, Task> taskMap = new HashMap<>();
-
-/*    static {
-        init();
-    }
-
-    private static void init(){
-        taskMap.put(TASK1.getId(),TASK1);
-        taskMap.put(TASK2.getId(),TASK3);
-        taskMap.put(TASK3.getId(),TASK3);
-        taskMap.put(TASK4.getId(),TASK4);
-    }*/
-
     @Override
-    public Task save(Task task) {
+    public Task save(Task task, EntityManager em) {
         if(task.isNew()){
             task.setId(UUID.randomUUID().toString());
+            em.persist(task);
+            return task;
         }
-        return taskMap.put(task.getId(),task);
+        return em.merge(task);
     }
 
     @Override
-    public Task getById(String id) {
-        return taskMap.get(id);
+    public Task getById(String id, EntityManager em) {
+        final TypedQuery<Task> typedQuery = em.createQuery("select t from Task t where t.id = :id",Task.class);
+        typedQuery.setParameter("id",id);
+        return typedQuery.getSingleResult();
     }
 
     @Override
-    public void delete(Task task) {
-        taskMap.remove(task.getId());
+    public void delete(Task task, EntityManager em) {
+        if(em.contains(task)){
+            em.remove(task);
+            return;
+        }
+        Task ref = em.getReference(Task.class,task.getId());
+        em.remove(ref);
     }
 
     @Override
-    public void deleteById(String id) {
-        taskMap.remove(id);
+    public void deleteById(String id, EntityManager em) {
+        Task ref = em.getReference(Task.class,id);
+        em.remove(ref);
     }
 
     @Override
-    public List<Task> getAll() {
-        return new ArrayList<>(taskMap.values());
+    public List<Task> getAll( EntityManager em) {
+        TypedQuery<Task> typedQuery = em.createQuery("select t from Task t",Task.class);
+        return typedQuery.getResultList();
+    }
+
+    @Override
+    public List<Task> getAll(String userId, EntityManager em) {
+        String query = "select t from Task t where t.assignee.id = :id or t.executor.id = :id";
+        TypedQuery<Task> typedQuery = em.createQuery(query,Task.class);
+        typedQuery.setParameter("id",userId);
+        return typedQuery.getResultList();
     }
 
     @Override
     public void clear() {
-        taskMap.clear();
+
     }
 
     @Override
-    public void saveAll(List<Task> tasks) {
-        tasks.forEach(task -> taskMap.put(task.getId(),task));
-    }
+    public void saveAll(List<Task> tasks, EntityManager em) {
 
+    }
 }

@@ -10,9 +10,9 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Entity
 @ToString
 @NoArgsConstructor
-@Entity
 @Table(name = "tasks")
 public class Task extends AbstractEntity {
 
