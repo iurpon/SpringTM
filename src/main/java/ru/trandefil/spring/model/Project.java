@@ -11,10 +11,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString(callSuper = true,exclude = {"tasks"})
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 @Table(name = "projects")
+@ToString(callSuper = true,exclude = {"tasks"})
 public class Project extends AbstractEntity {
 
     @Column(unique = true)
@@ -25,7 +25,7 @@ public class Project extends AbstractEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "project")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "project",cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
     public Project(String id, String name, String description, User user) {
