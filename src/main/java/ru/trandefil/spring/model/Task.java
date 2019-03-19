@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,8 +22,10 @@ public class Task extends AbstractEntity {
 
     private String description;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date start;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date end;
 
     @ManyToOne(fetch = FetchType.EAGER)

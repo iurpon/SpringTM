@@ -30,7 +30,7 @@ public class ProjectCreateController {
     public String goToProjectForm(Model model) {
         logger.info("============================== project create GET");
         final Project project = new Project();
-        user = userService.getById("b3247ebd-8f86-4f9b-9d18-08686125f51b");
+        user = userService.getById("46b04537-3439-4268-ae5e-17b9181eb218");
         project.setUser(user);
         model.addAttribute("project", project);
         return "editProjectForm";

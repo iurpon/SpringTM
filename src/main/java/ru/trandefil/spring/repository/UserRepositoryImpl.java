@@ -44,7 +44,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User save(User user, EntityManager entityManager) {
         logger.info("=================================== repository save user");
-        if (user.isNew()) {
+        if (user.isNew() || user.getId().isEmpty()) {
             user.setId(UUID.randomUUID().toString());
             entityManager.persist(user);
             return user;

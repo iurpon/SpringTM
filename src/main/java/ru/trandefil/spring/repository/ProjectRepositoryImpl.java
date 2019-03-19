@@ -15,7 +15,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 
     @Override
     public Project save(Project project, EntityManager entityManager) {
-        if (project.isNew()) {
+        if (project.isNew() || project.getId().isEmpty()) {
             project.setId(UUID.randomUUID().toString());
             entityManager.persist(project);
         }

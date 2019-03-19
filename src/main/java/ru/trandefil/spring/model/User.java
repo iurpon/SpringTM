@@ -14,7 +14,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "users")
-@ToString(callSuper = true,exclude = {"projects"})
 public class User extends AbstractEntity {
 
     @Column(unique = true)
@@ -35,4 +34,13 @@ public class User extends AbstractEntity {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }

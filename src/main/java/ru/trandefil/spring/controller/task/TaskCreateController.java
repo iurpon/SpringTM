@@ -49,7 +49,7 @@ public class TaskCreateController {
     public String saveTask(@ModelAttribute("task") Task task) {
         logger.info("=========================task create POST. task created : " + task);
         task.setProject(project);
-        final User user = userService.getById("b3247ebd-8f86-4f9b-9d18-08686125f51b");
+        final User user = userService.getById("46b04537-3439-4268-ae5e-17b9181eb218");
         task.setAssignee(user);
         task.setExecutor(user);
         taskService.save(task);

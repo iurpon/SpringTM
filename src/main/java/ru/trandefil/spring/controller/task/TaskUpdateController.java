@@ -31,7 +31,8 @@ public class TaskUpdateController {
     public String goToTaskForm(@RequestParam("id") String id, Model model){
         logger.info("================================== task update GET");
         final Task task = taskService.getById(id);
-        model.addAttribute("taskEntity",task);
+        logger.info("================================== getting task : " + task);
+        model.addAttribute("task",task);
         return "editTaskForm";
     }
 

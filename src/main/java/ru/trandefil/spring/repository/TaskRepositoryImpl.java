@@ -7,13 +7,16 @@ import ru.trandefil.spring.model.Task;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.*;
+import java.util.logging.Logger;
 
 @Repository
 public class TaskRepositoryImpl implements TaskRepository{
 
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Override
     public Task save(Task task, EntityManager em) {
-        if(task.isNew()){
+        if(task.isNew() || task.getId().isEmpty()){
             task.setId(UUID.randomUUID().toString());
             em.persist(task);
             return task;
