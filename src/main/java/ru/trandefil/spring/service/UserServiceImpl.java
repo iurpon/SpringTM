@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.trandefil.spring.api.UserRepository;
 import ru.trandefil.spring.api.UserService;
 import ru.trandefil.spring.model.User;
+import ru.trandefil.spring.util.UUIDUtil;
 
 import java.util.List;
 import java.util.logging.Logger;
+
 
 @Service
 @Transactional(readOnly = true)
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User save(@NonNull final User user) {
         logger.info("==================================== user service impl save");
+        if (user.isNew() || user.getId().isEmpty()) {
+            user.setId(UUIDUtil.getUniqueString());
+        }
         return userRepository.save(user);
     }
 
@@ -50,6 +55,12 @@ public class UserServiceImpl implements UserService {
     public User getById(@NonNull final String id) {
         logger.info("==================================== user service impl getById");
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public User getByName(String name) {
+        logger.info("==================================== user service impl getByName");
+        return userRepository.getByName(name);
     }
 
 }

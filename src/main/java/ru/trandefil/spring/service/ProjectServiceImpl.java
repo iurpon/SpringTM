@@ -7,9 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.trandefil.spring.api.ProjectRepository;
 import ru.trandefil.spring.api.ProjectService;
 import ru.trandefil.spring.model.Project;
+import ru.trandefil.spring.util.UUIDUtil;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,40 +21,40 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Override
     @Transactional
     public Project save(@NonNull final Project project) {
         logger.info("============================= project save");
-        return projectRepository.save(project,entityManager);
+        if (project.isNew() || project.getId().isEmpty()) {
+            project.setId(UUIDUtil.getUniqueString());
+        }
+        return projectRepository.save(project);
     }
 
     @Override
     public Project getById(@NonNull final String id) {
         logger.info("============================= project getById");
-        return projectRepository.getById(id,entityManager);
+        return projectRepository.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void delete(@NonNull final Project project) {
         logger.info("============================= project delete");
-        projectRepository.delete(project,entityManager);
+        projectRepository.delete(project);
     }
 
     @Override
     public List<Project> getAll() {
         logger.info("============================= project getAll");
-        return projectRepository.getAll(entityManager);
+        return projectRepository.getAll();
     }
 
     @Override
     @Transactional
     public void deleteById(@NonNull final String id) {
         logger.info("============================= project deleteById");
-        projectRepository.deleteById(id,entityManager);
+        projectRepository.deleteById(id);
     }
 
 }

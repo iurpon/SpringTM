@@ -30,7 +30,7 @@ public class ProjectCreateController {
     public String goToProjectForm(Model model) {
         logger.info("============================== project create GET");
         final Project project = new Project();
-        user = userService.getById("46b04537-3439-4268-ae5e-17b9181eb218");
+        user = userService.getByName("root");
         project.setUser(user);
         model.addAttribute("project", project);
         return "editProjectForm";
@@ -38,8 +38,8 @@ public class ProjectCreateController {
 
     @PostMapping("/addProject")
     public String saveProject(@ModelAttribute("project") Project project) {
-        logger.info("============================project create POST . saving Project : " + project);
         project.setUser(user);
+        logger.info("============================project create POST . saving Project : " + project);
         projectService.save(project);
         return "redirect:/projects";
     }

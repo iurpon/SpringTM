@@ -14,9 +14,6 @@ import ru.trandefil.spring.model.Project;
 import ru.trandefil.spring.model.Task;
 import ru.trandefil.spring.model.User;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Date;
 import java.util.logging.Logger;
 
 @Controller
@@ -49,10 +46,11 @@ public class TaskCreateController {
     public String saveTask(@ModelAttribute("task") Task task) {
         logger.info("=========================task create POST. task created : " + task);
         task.setProject(project);
-        final User user = userService.getById("46b04537-3439-4268-ae5e-17b9181eb218");
+        final User user = userService.getByName("root");
         task.setAssignee(user);
         task.setExecutor(user);
         taskService.save(task);
-         return "redirect:/tasks";
+        return "redirect:/tasks";
     }
+
 }

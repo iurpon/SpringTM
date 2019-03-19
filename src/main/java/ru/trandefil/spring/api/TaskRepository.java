@@ -1,26 +1,32 @@
 package ru.trandefil.spring.api;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.trandefil.spring.model.Task;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
-public interface TaskRepository {
+public interface TaskRepository extends JpaRepository<Task,String> {
 
-    Task save(Task project, EntityManager em);
+    @Override
+    List<Task> findAll();
 
-    Task getById(String id, EntityManager em);
+    @Override
+    <S extends Task> S save(S s);
 
-    void delete(Task project, EntityManager em);
+    @Override
+    Optional<Task> findById(String s);
 
-    void deleteById(String id, EntityManager em);
+    @Override
+    boolean existsById(String s);
 
-    List<Task> getAll(EntityManager em);
+    @Override
+    void deleteById(String s);
 
-    List<Task> getAll(String userId, EntityManager em);
+    @Override
+    void delete(Task task);
 
-    void clear();
 
-    void saveAll(List<Task> tasks, EntityManager em);
 
 }
