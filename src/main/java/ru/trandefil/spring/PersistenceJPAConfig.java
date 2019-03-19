@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -21,9 +22,9 @@ import java.util.logging.Logger;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({"classpath:application.properties"})
 @ComponentScan({"ru.trandefil.spring"})
-//@EnableJpaRepositories(basePackages = "net.javaguides.springmvc.repository")
+@PropertySource({"classpath:application.properties"})
+@EnableJpaRepositories(basePackages = "ru.trandefil.spring.api")
 public class PersistenceJPAConfig {
 
     @Autowired
@@ -52,8 +53,7 @@ public class PersistenceJPAConfig {
 /*
         hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", env.getProperty("hibernate.cache.use_second_level_cache"));
         hibernateProperties.setProperty("hibernate.cache.use_query_cache", env.getProperty("hibernate.cache.use_query_cache"));
-*/
-        // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
+         hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");*/
         return hibernateProperties;
     }
 
@@ -67,7 +67,6 @@ public class PersistenceJPAConfig {
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
-
         return entityManagerFactoryBean;
     }
 
