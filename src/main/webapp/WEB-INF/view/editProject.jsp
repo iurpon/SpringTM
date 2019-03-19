@@ -11,7 +11,7 @@
     <ul class="menu">
         <li><a class="menu" href="projects">See all Project</a></li>
         <li><a class="menu" href="tasks">See all Tasks</a></li>
-        <li><a class="menu" href="index.html">Home</a></li>
+        <li><a class="menu" href="wellcome">Home</a></li>
     </ul>
     <c:set var="actions" value="${action}"/>
     <c:if test = "${actions eq 'update'}">
@@ -19,11 +19,15 @@
         <form method="post" action="updateProject" class="ui-form">
             <h3>Update  Project data</h3>
             <input type="hidden" name="id" value="${project.id}">
+            <input type="hidden" name="userId" value="${project.user.id}">
             <div class="form-row">
                 <input type="text" id="name"  value="${project.name}" name="name" required autocomplete="off"><label for="name">Name</label>
             </div>
             <div class="form-row">
                 <input type="text" id="description" value="${project.description}" name="description" required autocomplete="off"><label for="description">Description</label>
+            </div>
+            <div class="form-row">
+                <input type="text" id="description" value="${project.user.name}" name="description"  readonly required autocomplete="off"><label for="description">Description</label>
             </div>
             <p><input type="submit" value="Update"></p>
         </form>

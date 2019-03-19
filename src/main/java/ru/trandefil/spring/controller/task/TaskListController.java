@@ -24,6 +24,7 @@ public class TaskListController {
 
     @GetMapping("tasks")
     public String taskList(Model model){
+        logger.info("====================================== task list GET");
         final List<Task> taskList = taskService.getAll();
         model.addAttribute("tasks",taskList);
         return "task-list";

@@ -7,6 +7,8 @@ import ru.trandefil.spring.api.TaskRepository;
 import ru.trandefil.spring.api.TaskService;
 import ru.trandefil.spring.model.Task;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
@@ -15,29 +17,32 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public Task save(@NonNull final Task task) {
-        return taskRepository.save(task);
+        return taskRepository.save(task,entityManager);
     }
 
     @Override
     public Task getById(@NonNull final String id) {
-        return taskRepository.getById(id);
+        return taskRepository.getById(id,entityManager);
     }
 
     @Override
     public void delete(@NonNull final Task task) {
-        taskRepository.delete(task);
+        taskRepository.delete(task,entityManager);
     }
 
     @Override
     public void deletById(@NonNull final String id) {
-        taskRepository.deleteById(id);
+        taskRepository.deleteById(id,entityManager);
     }
 
     @Override
     public List<Task> getAll() {
-        return taskRepository.getAll();
+        return taskRepository.getAll(entityManager);
     }
 
     @Override
@@ -47,7 +52,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void saveAll(@NonNull final List<Task> tasks) {
-        taskRepository.saveAll(tasks);
+        taskRepository.saveAll(tasks,entityManager);
     }
 
 }
