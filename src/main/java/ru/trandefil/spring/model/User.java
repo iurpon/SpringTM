@@ -3,17 +3,29 @@ package ru.trandefil.spring.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
+@Table(name = "users")
 public class User extends AbstractEntity {
 
+    @Column(unique = true)
     private String name;
 
     private String password;
 
+    @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Project> projects = new ArrayList<>();
 
     public User(String id, String name, String password, Role role) {
         super(id);
@@ -31,5 +43,4 @@ public class User extends AbstractEntity {
                 ", id='" + id + '\'' +
                 '}';
     }
-
 }

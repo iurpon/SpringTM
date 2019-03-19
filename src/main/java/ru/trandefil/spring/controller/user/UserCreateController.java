@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import ru.trandefil.spring.api.UserService;
-import ru.trandefil.spring.model.Role;
 import ru.trandefil.spring.model.User;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.logging.Logger;
 
 @Controller
 public class UserCreateController {
@@ -19,21 +17,19 @@ public class UserCreateController {
     @Autowired
     private UserService userService;
 
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
     @GetMapping("/addUser")
     public String goToAddForm(Model model) {
-        model.addAttribute("action", "create");
-        return "editUser";
+        model.addAttribute("user", new User());
+        return "editUserForm";
     }
 
     @PostMapping("/addUser")
-    public void saveUser(
-            @RequestParam("name") String name,
-            @RequestParam("password") String password,
-            @RequestParam("role") String role,
-            HttpServletResponse response
-    ) throws IOException {
-        userService.save(new User(null,name,password,Enum.valueOf(Role.class,role)));
-        response.sendRedirect("users");
+    public String saveUser(@ModelAttribute("user") User user) {
+        logger.info("========================= user create POST. saving user : " + user);
+        userService.save(user);
+        return "redirect:/users";
     }
 
 }

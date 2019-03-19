@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.logging.Logger;
 
-//@Controller
+@Controller
 public class WellcomeController {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
@@ -13,7 +13,7 @@ public class WellcomeController {
     @GetMapping("/")
     public String showForm() {
         logger.info("============================  /  GET");
-        return "redirect:wellcome";
+        return "redirect:/wellcome";
     }
 
     @GetMapping("/wellcome")
