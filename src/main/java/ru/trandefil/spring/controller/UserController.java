@@ -46,10 +46,10 @@ public class UserController {
     }
 
     @GetMapping("/deleteUser")
-    public void deleteUser(@RequestParam("id") String id, HttpServletResponse response) throws IOException {
+    public String deleteUser(@RequestParam("id") String id, HttpServletResponse response) throws IOException {
         logger.info("============================================= delete User GET");
         userService.deleteById(id);
-        response.sendRedirect("users");
+        return "redirect:/users";
     }
 
     @GetMapping("/updateUser")

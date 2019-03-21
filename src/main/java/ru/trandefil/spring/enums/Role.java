@@ -1,4 +1,4 @@
-package ru.trandefil.spring.model;
+package ru.trandefil.spring.enums;
 
 public enum Role {
     ADMIN,

@@ -3,7 +3,7 @@ package ru.trandefil.spring.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import ru.trandefil.spring.enums.Role;
 
 import javax.persistence.*;
 import java.util.ArrayList;
