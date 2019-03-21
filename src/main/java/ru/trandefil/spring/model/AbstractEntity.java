@@ -3,6 +3,8 @@ package ru.trandefil.spring.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.trandefil.spring.util.UUIDUtil;
+import sun.plugin.util.UIUtil;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -14,7 +16,7 @@ import javax.persistence.MappedSuperclass;
 public abstract class AbstractEntity {
 
     @Id
-    protected String id ;
+    protected String id  = UUIDUtil.getUniqueString();
 
     public AbstractEntity(String id) {
         this.id = id;
