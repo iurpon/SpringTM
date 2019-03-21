@@ -20,11 +20,14 @@ public class Task extends AbstractEntity {
     @Column(unique = true)
     private String name;
 
+    @Column
     private String description;
 
+    @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date start;
 
+    @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date end;
 

@@ -20,6 +20,7 @@ public class Project extends AbstractEntity {
     @Column(unique = true)
     private String name;
 
+    @Column
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)

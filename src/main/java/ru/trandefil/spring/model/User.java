@@ -19,6 +19,7 @@ public class User extends AbstractEntity {
     @Column(unique = true)
     private String name;
 
+    @Column
     private String password;
 
     @Enumerated(value = EnumType.STRING)
