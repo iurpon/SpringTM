@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 @EnableTransactionManagement
 @ComponentScan({"ru.trandefil.spring"})
 @PropertySource({"classpath:application.properties"})
-@EnableJpaRepositories(basePackages = "ru.trandefil.spring.api")
+@EnableJpaRepositories(basePackages = "ru.trandefil.spring.repository")
 public class PersistenceJPAConfig {
 
     @Autowired

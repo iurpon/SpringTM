@@ -4,8 +4,7 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.trandefil.spring.api.ProjectRepository;
-import ru.trandefil.spring.api.ProjectService;
+import ru.trandefil.spring.repository.ProjectRepository;
 import ru.trandefil.spring.model.Project;
 import ru.trandefil.spring.util.UUIDUtil;
 

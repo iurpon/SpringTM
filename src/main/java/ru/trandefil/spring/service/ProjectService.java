@@ -1,4 +1,4 @@
-package ru.trandefil.spring.api;
+package ru.trandefil.spring.service;
 
 import ru.trandefil.spring.model.Project;
 

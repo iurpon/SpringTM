@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.logging.Logger;
 
 @Controller
-public class WellcomeController {
+public class MainController {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -17,7 +17,7 @@ public class WellcomeController {
     }
 
     @GetMapping("/wellcome")
-    public String welcome(){
+    public String welcome() {
         logger.info("==================================== wellcome GET");
         return "hello";
     }

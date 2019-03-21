@@ -4,8 +4,7 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.trandefil.spring.api.TaskRepository;
-import ru.trandefil.spring.api.TaskService;
+import ru.trandefil.spring.repository.TaskRepository;
 import ru.trandefil.spring.model.Task;
 
 import java.util.List;

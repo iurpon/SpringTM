@@ -1,23 +1,24 @@
-package ru.trandefil.spring.controller.task;
+package ru.trandefil.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.trandefil.spring.api.ProjectService;
-import ru.trandefil.spring.api.TaskService;
-import ru.trandefil.spring.api.UserService;
+import ru.trandefil.spring.service.ProjectService;
+import ru.trandefil.spring.service.TaskService;
+import ru.trandefil.spring.service.UserService;
 import ru.trandefil.spring.model.Project;
 import ru.trandefil.spring.model.Task;
 import ru.trandefil.spring.model.User;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
-@Controller
-public class TaskCreateController {
+public class TaskController {
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -51,6 +52,30 @@ public class TaskCreateController {
         task.setExecutor(user);
         taskService.save(task);
         return "redirect:/tasks";
+    }
+
+    @GetMapping("/deleteTask")
+    public String deleteTask(@RequestParam("id") String id, HttpServletResponse response) throws IOException {
+        logger.info("==================================== delete task GET");
+        taskService.deletById(id);
+        return "redirect:/tasks";
+    }
+
+    @GetMapping("tasks")
+    public String taskList(Model model) {
+        logger.info("====================================== task list GET");
+        final List<Task> taskList = taskService.getAll();
+        model.addAttribute("tasks", taskList);
+        return "task-list";
+    }
+
+    @GetMapping("/updateTask")
+    public String goToTaskUpdateForm(@RequestParam("id") String id, Model model) {
+        logger.info("================================== task update GET");
+        final Task task = taskService.getById(id);
+        logger.info("================================== getting task : " + task);
+        model.addAttribute("task", task);
+        return "editTaskForm";
     }
 
 }

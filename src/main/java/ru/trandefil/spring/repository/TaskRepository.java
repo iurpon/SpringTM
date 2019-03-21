@@ -1,9 +1,8 @@
-package ru.trandefil.spring.api;
+package ru.trandefil.spring.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.trandefil.spring.model.Task;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
