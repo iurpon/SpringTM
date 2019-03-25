@@ -1,5 +1,6 @@
 package ru.trandefil.spring;
 
+import com.sun.faces.config.FacesInitializer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -10,7 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-public class MainWebAppInitializer implements WebApplicationInitializer {
+public class MainWebAppInitializer extends FacesInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext sc) throws ServletException {

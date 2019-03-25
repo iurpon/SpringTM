@@ -15,10 +15,10 @@
         <mysql-connector-java.version>5.1.4</mysql-connector-java.version>
         <hibernate.version>5.3.2.Final</hibernate.version>
         <spring.version>5.1.5.RELEASE</spring.version>
-        <servletapi.version>2.5</servletapi.version>
     </properties>
 
     <build>
+        <finalName>SpringTM</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -83,7 +83,6 @@
             <scope>provided</scope>
         </dependency>
 
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
@@ -96,18 +95,60 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/taglibs/standard -->
-<!--        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.1</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>2.1.5.RELEASE</version>
         </dependency>
+
+<!--        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.4.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.2.17</version>
+        </dependency>
+
+        <dependency>
+        <groupId>com.sun.faces</groupId>
+        <artifactId>jsf-impl</artifactId>
+        <version>2.2.17</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.github.jsr-330</groupId>
+            <artifactId>core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>7.0</version>
+        </dependency>
+
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.webflow/spring-faces &ndash;&gt;
+                <dependency>
+                    <groupId>org.springframework.webflow</groupId>
+                    <artifactId>spring-faces</artifactId>
+                    <version>2.5.1.RELEASE</version>
+                </dependency>
+        -->
 
 
     </dependencies>
