@@ -7,8 +7,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <f:metadata>
-    <f:viewParam name="id" value="#{jsfUserEditController.id}" />
-    <f:viewAction action="#{jsfUserEditController.init}" />
+    <f:viewParam name="id" value="#{jsfProjectEditController.id}" />
+    <f:viewAction action="#{jsfProjectEditController.init}" />
 </f:metadata>
 <h:head>
     <style type="text/css">
@@ -43,27 +43,24 @@
 <h:body>
     <h:form>
         <p:tab id="personal" title="Personal">
-            <p:panel header="Edit User ">
+            <p:panel header="Edit Project ">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Name: *" />
-                    <p:inputText value="#{jsfUserEditController.user.name}" required="true" label="name"/>
+                    <p:inputText value="#{jsfProjectEditController.project.name}" required="true" label="name"/>
 
-                    <h:outputText value="Password: *" />
-                    <p:password value="#{jsfUserEditController.user.password}" required="true" label="password"/>
+                    <h:outputText value="Description: *" />
+                    <p:inputText value="#{jsfProjectEditController.project.description}" required="true" label="description"/>
 
-                    <h:outputLabel for="menu" value="Role:" />
-                    <p:selectOneMenu id="console" value="#{jsfUserEditController.user.role}" style="width:125px">
-                        <f:selectItem itemLabel="ADMIN" itemValue="ADMIN" />
-                        <f:selectItem itemLabel="USER" itemValue="USER" />
-                    </p:selectOneMenu>
+                    <h:outputText value="Creator: *" />
+                    <p:inputText value="#{jsfProjectEditController.project.user.name}" required="true" label="username" readonly = "true"/>
 
                     <p:spacer height="20" />
 
                     <p:outputPanel>
-                        <p:commandButton value="SAVE" action="#{jsfUserEditController.save}" />
+                        <p:commandButton value="SAVE" action="#{jsfProjectEditController.save}" />
                         <p:spacer width="20" />
-                        <p:button value="User List" outcome="user-list">
+                        <p:button value="Project List" outcome="project-list">
                         </p:button>
                     </p:outputPanel>
                 </h:panelGrid>

@@ -2,7 +2,9 @@ package ru.trandefil.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.jsf.FacesContextUtils;
+import ru.trandefil.spring.model.Project;
 import ru.trandefil.spring.model.User;
+import ru.trandefil.spring.service.ProjectService;
 import ru.trandefil.spring.service.UserService;
 
 import javax.faces.bean.ManagedBean;
@@ -10,35 +12,37 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.util.logging.Logger;
 
-
 @ViewScoped
 @ManagedBean
-public class JsfUserEditController {
+public class JsfProjectEditController {
+
+    @Autowired
+    private ProjectService projectService;
 
     @Autowired
     private UserService userService;
 
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     private String id;
 
-    private User user = new User();
+    private Project project = new Project();
 
     public void init() {
-        logger.info("=============== jsfUserEditController init");
-
+        logger.info("=============== jsfProjectEditController init");
         FacesContextUtils
                 .getRequiredWebApplicationContext(FacesContext.getCurrentInstance())
                 .getAutowireCapableBeanFactory().autowireBean(this);
         if (id == null) {
+            final User logged = userService.getByName("root");
+            project.setUser(logged);
             return;
         }
-        User byId = userService.getById(id);
+        Project byId = projectService.getById(id);
         if (byId != null) {
-            user = byId;
+            project = byId;
         }
     }
-
 
     public String getId() {
         return id;
@@ -48,17 +52,18 @@ public class JsfUserEditController {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Project getProject() {
+        return project;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public String save() {
-        userService.save(user);
-        return "user-list.xhtml";
+        logger.info("======================= trying to save " + project);
+        projectService.save(project);
+        return "project-list.xhtml";
     }
 
 }
