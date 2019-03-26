@@ -11,21 +11,20 @@
 </h:head>
 <h:body>
     <h:form>
+        <div>
+            <p:button outcome="index" value="Home" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
 
-        <p:button outcome="index" value="Home" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
+            <p:button outcome="project-edit" value="Save new Project" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
 
-        <p:button outcome="project-edit" value="Save new Project" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
+            <p:button outcome="user-list" value="User List" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
 
-        <p:button outcome="user-list" value="User List" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
-
-        <p:button outcome="task-list" value="Task List" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
-
+            <p:button outcome="task-list" value="Task List" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
+        </div>
         <p:spacer height="20" />
-
         <p:dataTable id="usersTable" value="#{jsfProjectListController.getProjects()}" var="project"  style="width:900px;">
             <p:column headerText="NAME">
                 <p:outputLabel value="#{project.name}"/>
@@ -47,6 +46,11 @@
                                actionListener="#{jsfProjectListController.removeById(project.id)}">
                     <i class="fa fa-trash" style="font-size: 1.5em; margin: 5px;" />
                 </p:commandLink>
+            </p:column>
+            <p:column width="30">
+                <p:link outcome="task-edit" value = "ADD">
+                    <f:param name="projectId" value="#{project.id}" />
+                </p:link>
             </p:column>
         </p:dataTable>
 

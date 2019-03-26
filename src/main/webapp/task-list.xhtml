@@ -11,21 +11,20 @@
 </h:head>
 <h:body>
     <h:form>
+        <div>
+            <p:button outcome="index" value="Home" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
 
-        <p:button outcome="index" value="Home" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
+            <p:button outcome="task-edit" value="Save new Task" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
 
-        <p:button outcome="task-edit" value="Save new Task" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
+            <p:button outcome="user-list" value="User List" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
 
-        <p:button outcome="user-list" value="User List" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
-
-        <p:button outcome="project-list" value="Project List" icon="pi pi-star" style="margin-right:20px;">
-        </p:button>
-
+            <p:button outcome="project-list" value="Project List" icon="pi pi-star" style="margin-right:20px;">
+            </p:button>
+        </div>
         <p:spacer height="20" />
-
         <p:dataTable id="usersTable" value="#{jsfTaskListController.getTasks()}" var="task"  style="width:1200px;">
             <p:column headerText="NAME">
                 <p:outputLabel value="#{task.name}"/>
