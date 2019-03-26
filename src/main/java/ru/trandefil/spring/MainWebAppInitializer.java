@@ -19,7 +19,9 @@ public class MainWebAppInitializer extends FacesInitializer implements WebApplic
                 new AnnotationConfigWebApplicationContext();
 
         root.scan("ru.trandefil.spring");
+        sc.setInitParameter("primefaces.FONT_AWESOME", "true");
         sc.addListener(new ContextLoaderListener(root));
+
 
         ServletRegistration.Dynamic appServlet =
                 sc.addServlet("mvc", new DispatcherServlet(new GenericWebApplicationContext()));
