@@ -109,18 +109,6 @@ public class JsfTaskEditController {
         task.setEnd(end);
     }
 
-/*    public String getAssigneeId() {
-        logger.info("======================  get assignee id");
-        if (task.getAssignee() == null) return null;
-        return task.getAssignee().getId();
-    }
-
-    public void setAssigneeId(@NonNull final String assigneeId) {
-        logger.info("====================== set assignee id");
-        final User assignee = userService.getById(assigneeId);
-        task.setAssignee(assignee);
-    }*/
-
     public String getExecutorId() {
         logger.info("===================== get executor id");
         if (task.getExecutor() == null) return null;
