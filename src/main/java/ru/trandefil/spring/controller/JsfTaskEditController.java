@@ -1,5 +1,6 @@
 package ru.trandefil.spring.controller;
 
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.jsf.FacesContextUtils;
 import ru.trandefil.spring.model.Project;
@@ -12,8 +13,7 @@ import ru.trandefil.spring.service.UserService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 import java.util.logging.Logger;
 
 @ViewScoped
@@ -35,14 +35,14 @@ public class JsfTaskEditController {
 
     private Task task = new Task();
 
-    private String projectId;
-
     public void init() {
         logger.info("=============== jsfProjectEditController init");
         FacesContextUtils
                 .getRequiredWebApplicationContext(FacesContext.getCurrentInstance())
                 .getAutowireCapableBeanFactory().autowireBean(this);
         if (id == null) {
+            final User assignee = userService.getByName("root");
+            task.setAssignee(assignee);
             return;
         }
         Task byId = taskService.getById(id);
@@ -51,8 +51,12 @@ public class JsfTaskEditController {
         }
     }
 
-    public Iterable<Project> getProjects(){
+    public Iterable<Project> getProjects() {
         return projectService.getAll();
+    }
+
+    public Iterable<User> getUsers(){
+        return userService.getAll();
     }
 
     public String getId() {
@@ -71,22 +75,67 @@ public class JsfTaskEditController {
         this.task = task;
     }
 
-    public void setProjectId(String projectId){
+    public void setProjectId(String projectId) {
         logger.info("=================== setProject ID");
         final Project project = projectService.getById(projectId);
         task.setProject(project);
     }
 
-    public String getProjectId(){
+    public String getProjectId() {
         logger.info("================ get Project ID");
-        if(task.getProject() == null) return null;
+        if (task.getProject() == null) return null;
         return task.getProject().getId();
     }
 
+    public Date getStart() {
+        logger.info("================ get start ");
+        if (task.getStart() == null) return null;
+        return task.getStart();
+    }
 
-    public String save(){
-        logger.info("========================= task save()");
-//        taskService.save(task);
+    public void setStart(Date start) {
+        logger.info("================ set start ");
+        task.setStart(start);
+    }
+
+    public Date getEnd() {
+        logger.info("================ get end ");
+        if (task.getEnd() == null) return null;
+        return task.getEnd();
+    }
+
+    public void setEnd(Date end) {
+        logger.info("================ set end ");
+        task.setEnd(end);
+    }
+
+/*    public String getAssigneeId() {
+        logger.info("======================  get assignee id");
+        if (task.getAssignee() == null) return null;
+        return task.getAssignee().getId();
+    }
+
+    public void setAssigneeId(@NonNull final String assigneeId) {
+        logger.info("====================== set assignee id");
+        final User assignee = userService.getById(assigneeId);
+        task.setAssignee(assignee);
+    }*/
+
+    public String getExecutorId() {
+        logger.info("===================== get executor id");
+        if (task.getExecutor() == null) return null;
+        return task.getExecutor().getId();
+    }
+
+    public void setExecutorId(@NonNull final String executorId) {
+        logger.info("=================== set executor id");
+        final User executor = userService.getById(executorId);
+        task.setExecutor(executor);
+    }
+
+    public String save() {
+        logger.info("========================= task save() : " + task );
+        taskService.save(task);
         return "task-list.xhtml";
     }
 
