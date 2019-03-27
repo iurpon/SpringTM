@@ -12,6 +12,8 @@ import ru.trandefil.spring.service.UserService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
 
 @ViewScoped
@@ -31,10 +33,9 @@ public class JsfTaskEditController {
 
     private String id;
 
-    private String projectId;
-
     private Task task = new Task();
 
+    private String projectId;
 
     public void init() {
         logger.info("=============== jsfProjectEditController init");
@@ -42,16 +43,16 @@ public class JsfTaskEditController {
                 .getRequiredWebApplicationContext(FacesContext.getCurrentInstance())
                 .getAutowireCapableBeanFactory().autowireBean(this);
         if (id == null) {
-            final Project project = projectService.getById(projectId);
-            final User logged = userService.getByName("root");
-            task.setAssignee(logged);
-            task.setProject(project);
             return;
         }
         Task byId = taskService.getById(id);
         if (byId != null) {
             task = byId;
         }
+    }
+
+    public Iterable<Project> getProjects(){
+        return projectService.getAll();
     }
 
     public String getId() {
@@ -62,14 +63,6 @@ public class JsfTaskEditController {
         this.id = id;
     }
 
-    public String getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
-    }
-
     public Task getTask() {
         return task;
     }
@@ -78,10 +71,23 @@ public class JsfTaskEditController {
         this.task = task;
     }
 
+    public void setProjectId(String projectId){
+        logger.info("=================== setProject ID");
+        final Project project = projectService.getById(projectId);
+        task.setProject(project);
+    }
+
+    public String getProjectId(){
+        logger.info("================ get Project ID");
+        if(task.getProject() == null) return null;
+        return task.getProject().getId();
+    }
+
+
     public String save(){
         logger.info("========================= task save()");
-        taskService.save(task);
-        return "task-list";
+//        taskService.save(task);
+        return "task-list.xhtml";
     }
 
 }

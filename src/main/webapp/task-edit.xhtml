@@ -9,74 +9,29 @@
 <f:metadata>
     <f:viewParam name="id" value="#{jsfTaskEditController.id}" />
     <f:viewAction action="#{jsfTaskEditController.init}" />
-    <f:viewAction action="#{jsfTaskEditController.projectId}" />
 </f:metadata>
 <h:head>
-    <style type="text/css">
-    .label {
-        width:20%;
-        padding:4px;
-    }
-
-    .value {
-        width:80%;
-        padding:4px;
-    }
-
-    .grid {
-        width:100%;
-    }
-
-    .error {
-        color: red;
-    }
-
-    .outputLabel {
-        font-weight: bold;
-    }
-
-    .grid {
-        width:33%;
-        padding:4px;
-    }
-</style>
 </h:head>
 <h:body>
     <h:form>
-        <p:tab id="personal" title="Personal">
-            <p:panel header="Edit Task ">
-                <p:messages />
-                <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Name: *" />
-                    <p:inputText value="#{jsfTaskEditController.task.name}" required="true" label="name"/>
 
-                    <h:outputText value="Description: *" />
-                    <p:inputText value="#{jsfTaskEditController.task.description}" required="true" label="description"/>
+        <p:outputPanel>
+            <p:outputLabel value = "Project"/>
+        </p:outputPanel>
+        <p:outputPanel >
+            <p:selectOneMenu value = "#{jsfTaskEditController.projectId}">
+                <f:selectItem itemLabel="" itemValue = "#{null}"/>
+                <f:selectItems value = "#{jsfTaskEditController.projects}" var = "project"
+                              itemValue = "#{project.id}" itemLabel = "#{project.name}"/>
+            </p:selectOneMenu>
+        </p:outputPanel>
 
-                    <h:outputText value="Creator: *" />
-                    <p:inputText value="#{jsfTaskEditController.task.assignee.name}" required="true" label="username" readonly = "true"/>
-
-                    <h:outputText value="Executor: *" />
-                    <p:inputText value="#{jsfTaskEditController.task.executor.name}" required="true" label="username" />
-
-                    <h:outputText value="Date start: *" />
-                    <p:inputText value="#{jsfTaskEditController.task.start}" required="true" label="start" readonly = "true"/>
-
-                    <h:outputText value="Date end: *" />
-                    <p:inputText value="#{jsfTaskEditController.task.end}" required="true" label="end" readonly = "true"/>
-
-                    <p:spacer height="20" />
-
-                    <p:outputPanel>
-                        <p:commandButton value="SAVE" action="#{jsfTaskEditController.save}" />
-                        <p:spacer width="20" />
-                        <p:button value="Task List" outcome="task-list">
-                        </p:button>
-                    </p:outputPanel>
-                </h:panelGrid>
-            </p:panel>
-        </p:tab>
-
+        <p:outputPanel>
+            <p:commandButton value="SAVE" action="#{jsfTaskEditController.save}" />
+            <p:spacer width="20" />
+            <p:button value="Task List" outcome="task-list">
+            </p:button>
+        </p:outputPanel>
 
     </h:form>
 </h:body>
