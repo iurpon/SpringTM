@@ -13,12 +13,12 @@ import org.springframework.web.servlet.view.JstlView;
 
 import java.util.logging.Logger;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = {"ru.trandefil.spring"})
+//@Configuration
+//@EnableWebMvc
+//@ComponentScan(basePackages = {"ru.trandefil.spring"})
 public class AppConfig implements WebMvcConfigurer {
 
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+/*    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -40,6 +40,6 @@ public class AppConfig implements WebMvcConfigurer {
         internalResourceViewResolver.setPrefix("/WEB-INF/view/");
         internalResourceViewResolver.setSuffix(".jsp");
         return internalResourceViewResolver;
-    }
+    }*/
 
 }

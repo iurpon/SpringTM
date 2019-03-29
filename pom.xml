@@ -15,6 +15,7 @@
         <mysql-connector-java.version>5.1.4</mysql-connector-java.version>
         <hibernate.version>5.3.2.Final</hibernate.version>
         <spring.version>5.1.5.RELEASE</spring.version>
+        <cxf.version>3.2.8</cxf.version>
     </properties>
 
     <build>
@@ -92,7 +93,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
         </dependency>
 
         <dependency>
@@ -108,9 +109,9 @@
         </dependency>
 
         <dependency>
-        <groupId>com.sun.faces</groupId>
-        <artifactId>jsf-impl</artifactId>
-        <version>2.2.17</version>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.2.17</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
@@ -148,6 +149,46 @@
             <artifactId>rewrite-servlet</artifactId>
             <version>3.4.2.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+<!--        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-api</artifactId>
+            <version>2.7.18</version>
+        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-core -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-core</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-core -->
+
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+            <version>3.0.7.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-http-jetty -->
+<!--        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>3.3.1</version>
+        </dependency>-->
 
 
     </dependencies>
