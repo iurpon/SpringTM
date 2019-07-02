@@ -1,6 +1,6 @@
 # SpringTM
 
-Design and implement a CRUD commands for user to manipulate with projects and tasks.
+Разработка CRUD клиент-серверного приложения , предоставляего возможность пользователю ознакомиться с проектами и задачами посредством консоли(с авторизацией через сессию) и веб(с авторизацией через Spring Security).
 
 </path></svg></a>Technologies used:</h2>
 <ul>
