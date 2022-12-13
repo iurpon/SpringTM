@@ -15,7 +15,7 @@
         <mysql-connector-java.version>5.1.4</mysql-connector-java.version>
         <hibernate.version>5.3.2.Final</hibernate.version>
         <spring.version>5.1.5.RELEASE</spring.version>
-        <cxf.version>3.2.8</cxf.version>
+        <cxf.version>3.4.10</cxf.version>
     </properties>
 
     <build>
